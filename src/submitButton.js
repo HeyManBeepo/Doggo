@@ -5,29 +5,35 @@ class SubmitButton extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-          value: ''
+          value: 'fartpoop',
+          isCorrectAnswer: true,
       }
     };
-    onChange = event => {
+    correctAnswer = '$30';
+    onChange = (event) => {
       this.setState({ value: event.target.value});
   }
-
-    onSubmit = event => {
+    onSubmit = (event) => {
       const { value } = this.state;
       event.preventDefault();
+      console.log(this.state.value);
       console.log(value);
+      (this.state.value == this.correctAnswer ? this.setState({isCorrectAnswer: true}) : this.setState({isCorrectAnswer: false})) 
   }
     
   render() {
     return (
       <form>
           <label>
-            Email the question??!?
-            <input type = "text" name = "name" />
+            Email the question??!? Need to type in $30 first plz gimme some treats.
+            <input type = "text" name = "name" onChange = {(event) => {this.onChange(event)}} />
           </label>
           <button onClick={(event) => {this.onSubmit(event)}}>
         Submit
       </button>
+      {this.state.isCorrectAnswer ? <h1> Corect!</h1> : <h2>False!</h2>}
+      
+      
         </form>
     );
   }
